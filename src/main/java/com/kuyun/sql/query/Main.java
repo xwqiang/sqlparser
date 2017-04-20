@@ -1,8 +1,11 @@
 package com.kuyun.sql.query;
 
 import com.kuyun.sql.ast.ASTree;
-import com.kuyun.sql.ast.BinaryExpr;
-import com.kuyun.sql.ast.Value;
+import com.kuyun.sql.ast.And;
+import com.kuyun.sql.ast.BinaryExp;
+import com.kuyun.sql.ast.Operation;
+import com.kuyun.sql.ast.SingleExp;
+import com.kuyun.sql.ast.Term;
 import com.kuyun.sql.visit.PrintVisitor;
 import com.kuyun.sql.visit.Visitor;
 
@@ -12,8 +15,9 @@ import com.kuyun.sql.visit.Visitor;
 public class Main {
 
     public static void main(String[] args) {
-        BinaryExpr binaryExpr = new BinaryExpr(new Value("a"), new Value("and"), new Value("c"));
-        ASTree asTree = new BinaryExpr(binaryExpr, new Value("or"), new Value("c"));
+        BinaryExp equalExp = new BinaryExp(new BinaryExp("a", "=", "1"), new Operation("or"), new SingleExp(new Operation("not"),new Term("single")));
+        ASTree and = new And("aaa", "bbb");
+        ASTree asTree = new BinaryExp(equalExp, new Operation("and"), and);
 
         Visitor<String> visitor = new PrintVisitor();
         String sql = asTree.accept(visitor);

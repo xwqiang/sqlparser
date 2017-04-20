@@ -3,19 +3,20 @@ package com.kuyun.sql.ast;
 import com.kuyun.sql.visit.Visitor;
 
 /**
+ * 最小单元
  * Created by xuwuqiang on 2017/4/20.
  */
-public class Value implements ASTree {
+public class Term implements ASTree {
 
-    private String value;
+    private String term;
 
-    public Value(String value) {
-        this.value = value;
+    public Term(String term) {
+        this.term = term;
     }
 
     @Override
     public String toString() {
-        return " " + this.value + " ";
+        return " " + this.term + " ";
     }
 
     @Override
