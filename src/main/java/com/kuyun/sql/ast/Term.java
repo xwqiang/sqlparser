@@ -14,9 +14,12 @@ public class Term implements ASTree {
         this.term = term;
     }
 
-    @Override
-    public String toString() {
-        return " " + this.term + " ";
+    public String getTerm() {
+        return term;
+    }
+
+    public void setTerm(String term) {
+        this.term = term;
     }
 
     @Override

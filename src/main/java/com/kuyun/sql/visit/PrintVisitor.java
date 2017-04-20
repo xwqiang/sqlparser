@@ -1,9 +1,9 @@
 package com.kuyun.sql.visit;
 
 
-import com.kuyun.sql.ast.ASTree;
 import com.kuyun.sql.ast.BinaryExp;
 import com.kuyun.sql.ast.SingleExp;
+import com.kuyun.sql.ast.Term;
 
 /**
  * 输出成字符串
@@ -11,30 +11,42 @@ import com.kuyun.sql.ast.SingleExp;
  */
 public class PrintVisitor implements Visitor<String> {
 
-    String result = "";
+    private static final String LEFTBRACE = "(";
+    private static final String RIGHTBRACE = ")";
+    private static final String EMPTY = "";
 
-    @Override
-    public String visit(ASTree term) {
-        result = term.toString();
-        return result;
+    private String result = EMPTY;
+
+    private static String brace(String... values) {
+        String braceValue = LEFTBRACE;
+        for (String value : values) {
+            braceValue += value;
+        }
+        braceValue += RIGHTBRACE;
+        return braceValue;
     }
 
     @Override
     public String visit(SingleExp singleExp) {
         String temp = singleExp.getExpresion().accept(this);
         String op = singleExp.getOperation().toString();
-        result = "(" + op + temp + ")";
+        result = brace(op, temp);
+        return result;
+    }
+
+    @Override
+    public String visit(Term term) {
+        result = " " + term.getTerm() + " ";
         return result;
     }
 
     @Override
     public String visit(BinaryExp binaryExpr) {
         binaryExpr.getLeftExpression().accept(this);
-        String r = result;
+        String temp = result;
         String op = binaryExpr.getOperation().toString();
         binaryExpr.getRightExpression().accept(this);
-        result = "(" + r + op + result + ")";
+        result = brace(temp, op, result);
         return result;
     }
-
 }
