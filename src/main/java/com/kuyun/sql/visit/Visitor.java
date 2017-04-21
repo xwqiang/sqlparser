@@ -12,17 +12,18 @@ import com.kuyun.sql.ast.Term;
 public interface Visitor<R> {
 
     /**
-     * 弹幕运算符处理
+     * 单目运算符处理
      */
-    R visit(SingleExp singleExp);
+    R visit(SingleExp singleExp) throws Exception;
 
     /**
      * 双目运算符处理
      */
-    R visit(BinaryExp binaryExpr);
+    R visit(BinaryExp binaryExpr) throws Exception;
 
     /**
      * 最小单元处理
      */
     R visit(Term term);
+
 }

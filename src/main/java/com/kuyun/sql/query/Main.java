@@ -14,7 +14,7 @@ import com.kuyun.sql.visit.Visitor;
  */
 public class Main {
 
-    public static void main(String[] args) {
+    public static String toSql() throws Exception {
         BinaryExp equalExp = new BinaryExp(new BinaryExp("a", "=", "1"), new Operation("or"),
             new SingleExp(new Operation("not"), new Term("single")));
         ASTree and = new And("aaa", "bbb");
@@ -22,6 +22,15 @@ public class Main {
 
         Visitor<String> visitor = new PrintVisitor();
         String sql = asTree.accept(visitor);
+        return sql;
+    }
+
+
+    public static void main(String[] args) throws Exception {
+
+        String sql = toSql();
         System.out.println(sql);
     }
+
+
 }

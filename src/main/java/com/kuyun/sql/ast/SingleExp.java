@@ -1,12 +1,10 @@
 package com.kuyun.sql.ast;
 
-import com.kuyun.sql.visit.Visitor;
-
 /**
  * 一目运算符
  * Created by xuwuqiang on 2017/4/20.
  */
-public class SingleExp implements ASTree {
+public class SingleExp extends ASTree {
 
     protected Operation operation;
     protected ASTree expresion;
@@ -38,8 +36,4 @@ public class SingleExp implements ASTree {
         this.expresion = expresion;
     }
 
-    @Override
-    public <R> R accept(Visitor<R> visitor) {
-        return visitor.visit(this);
-    }
 }

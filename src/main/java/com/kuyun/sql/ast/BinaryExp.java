@@ -1,12 +1,10 @@
 package com.kuyun.sql.ast;
 
-import com.kuyun.sql.visit.Visitor;
-
 /**
  * 二目运算符
  * Created by xuwuqiang on 2017/4/20.
  */
-public class BinaryExp implements ASTree {
+public class BinaryExp extends ASTree {
 
     protected ASTree leftExpression;
     protected Operation operation;
@@ -50,8 +48,4 @@ public class BinaryExp implements ASTree {
         this.rightExpression = rightExpression;
     }
 
-    @Override
-    public <R> R accept(Visitor<R> visitor) {
-        return visitor.visit(this);
-    }
 }

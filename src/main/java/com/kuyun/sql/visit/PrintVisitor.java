@@ -27,7 +27,7 @@ public class PrintVisitor implements Visitor<String> {
     }
 
     @Override
-    public String visit(SingleExp singleExp) {
+    public String visit(SingleExp singleExp) throws Exception {
         String temp = singleExp.getExpresion().accept(this);
         String op = singleExp.getOperation().toString();
         result = brace(op, temp);
@@ -41,7 +41,7 @@ public class PrintVisitor implements Visitor<String> {
     }
 
     @Override
-    public String visit(BinaryExp binaryExpr) {
+    public String visit(BinaryExp binaryExpr) throws Exception {
         binaryExpr.getLeftExpression().accept(this);
         String temp = result;
         String op = binaryExpr.getOperation().toString();
