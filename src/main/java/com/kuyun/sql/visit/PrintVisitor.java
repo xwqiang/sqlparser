@@ -13,9 +13,7 @@ public class PrintVisitor implements Visitor<String> {
 
     private static final String LEFTBRACE = "(";
     private static final String RIGHTBRACE = ")";
-    private static final String EMPTY = "";
 
-    private String result = EMPTY;
 
     private static String brace(String... values) {
         String braceValue = LEFTBRACE;
@@ -28,25 +26,21 @@ public class PrintVisitor implements Visitor<String> {
 
     @Override
     public String visit(SingleExp singleExp) throws Exception {
-        String temp = singleExp.getExpresion().accept(this);
         String op = singleExp.getOperation().toString();
-        result = brace(op, temp);
-        return result;
+        String result = singleExp.getExpresion().accept(this);
+        return brace(op, result);
     }
 
     @Override
     public String visit(Term term) {
-        result = " " + term.getTerm() + " ";
-        return result;
+        return " " + term.getTerm() + " ";
     }
 
     @Override
     public String visit(BinaryExp binaryExpr) throws Exception {
-        binaryExpr.getLeftExpression().accept(this);
-        String temp = result;
+        String left = binaryExpr.getLeftExpression().accept(this);
         String op = binaryExpr.getOperation().toString();
-        binaryExpr.getRightExpression().accept(this);
-        result = brace(temp, op, result);
-        return result;
+        String right = binaryExpr.getRightExpression().accept(this);
+        return brace(left, op, right);
     }
 }

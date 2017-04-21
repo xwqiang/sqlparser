@@ -21,16 +21,13 @@ public class Main {
         ASTree asTree = new BinaryExp(equalExp, new Operation("and"), and);
 
         Visitor<String> visitor = new PrintVisitor();
-        String sql = asTree.accept(visitor);
-        return sql;
+        return asTree.accept(visitor);
     }
 
 
     public static void main(String[] args) throws Exception {
-
         String sql = toSql();
         System.out.println(sql);
     }
-
 
 }
