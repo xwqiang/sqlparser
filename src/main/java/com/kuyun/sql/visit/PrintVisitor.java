@@ -9,7 +9,7 @@ import com.kuyun.sql.ast.Term;
  * 输出成字符串
  * Created by xuwuqiang on 2017/4/20.
  */
-public class PrintVisitor implements Visitor<String> {
+public class PrintVisitor extends Visitor<String> {
 
     private static final String LEFTBRACE = "(";
     private static final String RIGHTBRACE = ")";

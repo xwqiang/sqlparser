@@ -28,6 +28,7 @@ public abstract class ASTree {
         if (method != null) {
             return (R) method.invoke(visitor, this);
         }
+//        visitor.visit(this);
         return null;
     }
 }
